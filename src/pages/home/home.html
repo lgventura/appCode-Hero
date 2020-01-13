@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      <div>
+        <strong><span class="home-title-black">BUSCA MARVEL </span></strong><span class="home-title-ligth">TESTE FRONT-END</span>
+      </div>
+      <hr class="title-line">
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+      <ion-label stacked><span class="hero-name">Nome do Personagem</span></ion-label>
+      <ion-input type="text" [(ngModel)]="searchString" 
+      (keyup)="searchHero()"></ion-input>
+  </ion-item>
+  <ion-grid class="heroes-grid">
+      <ion-row>
+        <ion-col col-3></ion-col>
+        <ion-col col-9>Nome</ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-list>
+      <ion-item *ngFor="let hero of heroes" (click)="selectHero(hero.id)">
+        <ion-avatar item-start>
+          <img src="{{hero.thumbnail.path+'.'+hero.thumbnail.extension}}">
+        </ion-avatar>
+        <h2>{{hero.name}}</h2>
+        <hr>
+      </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer style="margin-bottom: 5%;" *ngIf="!serch">
+   <ion-item>
+        <ion-icon (click)="nextPage(actualPage-1)" name="arrow-dropleft" class="pagination-arrows" style="float: left;margin-left: 10%;"></ion-icon>
+        
+        <button (click)="nextPage(actualPage)" class="first-button" ion-button round>{{actualPage}}</button>
+
+        <button (click)="nextPage(secondPage)" class="next-buttons" ion-button round clear >{{secondPage}}</button>
+
+        <button (click)="nextPage(thirtyPage)" class="next-buttons2" ion-button round clear >{{thirtyPage}}</button>
+        
+        <ion-icon (click)="nextPage(actualPage+1)" name="arrow-dropright" class="pagination-arrows" style="float: right;margin-right: 10%;"></ion-icon>
+    </ion-item>
+</ion-footer>
